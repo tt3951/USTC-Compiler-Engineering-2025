@@ -130,7 +130,15 @@ Value* CminusfBuilder::visit(ASTCompoundStmt &node) {
     // TODO: This function is not complete.
     // You may need to add some code here
     // to deal with complex statements. 
-    
+    bool need_enter = true;
+    if (context.pre_enter_scope) {
+        // 函数体的第一个 compound-stmt：作用域已在 FunDecl 中 enter 过
+        context.pre_enter_scope = false;
+        need_enter = false;
+    }
+    if (need_enter)
+        scope.enter();
+
     for (auto &decl : node.local_declarations) {
         decl->accept(*this);
     }
