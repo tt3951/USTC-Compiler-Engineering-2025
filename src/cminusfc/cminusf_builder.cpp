@@ -3,7 +3,7 @@
 #define CONST_FP(num) ConstantFP::get((float)num, module.get())
 #define CONST_INT(num) ConstantInt::get(num, module.get())
 
-// types
+// types 
 Type *VOID_T;
 Type *INT1_T;
 Type *INT32_T;
